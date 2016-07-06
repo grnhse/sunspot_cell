@@ -32,15 +32,6 @@ module SunspotCell
         end
 
         def document_for(clazz, id)
-          if ::Adapters::InstanceAdapter.for(clazz)
-            RSolr::Xml::Document.new(
-              id: Sunspot::Adapters::InstanceAdapter.index_id_for(clazz.name, id),
-              type: Sunspot::Util.superclasses_for(clazz).map(&:name)
-            )
-          end
-        end
-
-        def document_for(clazz, id)
           Sunspot::RichDocument.new(
             :id => Sunspot::Adapters::InstanceAdapter.index_id_for(clazz.name, id),
             :type => Sunspot::Util.superclasses_for(clazz).map(&:name)
